@@ -14,7 +14,7 @@ export default function Home() {
   }
 
   return (
-    <main className=" bg-everything-image bg-cover flex min-h-screen flex-col justify-center items-center">
+    <main className=" bg-everything-image bg-cover bg-center flex min-h-screen flex-col justify-center items-center">
       <div className="h-screen w-screen absolute flex justify-center items-center">
         <div className={`absolute ${(clicked) ? "animate-grow-beyond-size" : "animate-grow-to-size"}`}>
           <button onClick={handleClick} className="w-[250px] h-[250px] bg-nothing rounded-full"></button>
