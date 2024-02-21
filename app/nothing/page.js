@@ -10,9 +10,12 @@ const KodeMono = localFont({
 
 export default function Nothing() {
 
+  const router = useRouter();
+
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [everythingRoute, setEverythingRoute] = useState(false);
 
   const [display, setDisplay] = useState("");
   const [displayCursor, setDisplayCursor] = useState(false);
@@ -34,15 +37,38 @@ export default function Nothing() {
   useEffect(() => {
 
     setTimeout(() => {
-      const streamText = async (string) => {
-        for (const letter of string) {
-          if (letter === " ") await new Promise(r => setTimeout(r, 200));
-          else await new Promise(r => setTimeout(r, 65))
-          
-          setDisplay((prevDisplay) => `${prevDisplay}${letter}`)
+
+      const asyncMaster = async () => {
+        
+        const streamText = async (string) => {
+          for (const letter of string) {
+            if (letter === " ") await new Promise(r => setTimeout(r, 200));
+            else if (letter === "\n") await new Promise(r => setTimeout(r, 500));
+            else await new Promise(r => setTimeout(r, 65))
+            
+            setDisplay((prevDisplay) => `${prevDisplay}${letter}`)
+          }
         }
+
+        const whatIAm = [
+          " a developer", " nothing", " everything", // Me
+          " not allowed", // Me
+          " eccentric", // Pragya
+          " resolute", // Malian
+          " milk", // Jia
+          " yoasobi", // Pustak
+          " clear", // Shashwat
+        ]
+        const textToStreamIntro = `hello, my name is lalit\nand i am`
+        await streamText(textToStreamIntro);
+        await streamText(whatIAm[Math.floor(Math.random() * whatIAm.length)])
+        // await new Promise(r => setTimeout(r, 1000));
+        const textToStreamOutro = `\n\nwelcome to the l in skarj.pl`
+        await streamText(textToStreamOutro);
+        await new Promise(r => setTimeout(r, 1000));
+        router.push("/main")
       }
-      streamText("hello, i am lalit");
+      asyncMaster();
 
     }, 1000)
 
@@ -59,10 +85,12 @@ export default function Nothing() {
             duration: 0.5
           }}
         />
-        <div className={`${loading && "opacity-0"} absolute h-screen w-screen flex justify-center items-center`}>
-          <pre className={`${KodeMono.className} text-white text-2xl md:text-7xl`}>
-            {display}{(displayCursor && display) ? "|" : " "}
-          </pre>
+        <div className={`${loading && "opacity-0"} absolute h-screen w-screen flex flex-col justify-center items-center`}>
+          <div className="flex flex-grow justify-center items-center">
+            <pre className={`${KodeMono.className} text-white text-xl md:text-6xl`}>
+              {display}{(displayCursor && display) ? "|" : " "}
+            </pre>
+          </div>
         </div>
       </main>
   )
