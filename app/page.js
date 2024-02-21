@@ -23,7 +23,7 @@ export default function Home() {
   }
 
   return (
-    <main className=" bg-everything-image bg-cover flex min-h-screen flex-col justify-center items-center">
+    <main className=" bg-everything-image bg-cover bg-center flex min-h-screen flex-col justify-center items-center">
       <div className="h-screen w-screen absolute flex justify-center items-center">
         <motion.div
           className="w-1/2 h-full bg-black"
