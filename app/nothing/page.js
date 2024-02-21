@@ -15,8 +15,8 @@ export default function Nothing() {
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [everythingRoute, setEverythingRoute] = useState(false);
   const [skipAnimation, setSkipAnimation] = useState(false);
+  const [playExit, setPlayExit] = useState(false);
 
   const [textStreamFinish, setTextStreamFinish] = useState(false);
   
@@ -54,15 +54,15 @@ export default function Nothing() {
         }
 
         const whatIAm = [
-          " a developer", " nothing", " everything", // Me
-          " not allowed", // Me
-          " eccentric", // Pragya
-          " resolute", // Malian
-          " milk", // Jia
-          " yoasobi", // Pustak
-          " clear", // Shashwat
+          "a developer", "nothing", "everything", // Me
+          "not allowed", // Me
+          "eccentric", // Pragya
+          "resolute", // Malian
+          "milk", // Jia
+          "yoasobi", // Pustak
+          "a crystal", // Shashwat
         ]
-        const textToStreamIntro = `hello, my name is lalit\nand i am`
+        const textToStreamIntro = `hello, my name is lalit\nand i am `
         const textToStreamOutro = `\n\nwelcome to the l in skarj.pl`
 
         await streamText(textToStreamIntro);
@@ -78,46 +78,60 @@ export default function Nothing() {
 
   }, [])
 
-  const handleClick = () => {
+  const handleClick = async () => {
     localStorage.setItem("everything.skipAnimation", skipAnimation)
+    localStorage.setItem("everything.sourceMain", "/nothing")
+    setPlayExit(true);
+    await new Promise(r => setTimeout(r, 1000));
     router.push("/main");
   }
 
   return (
       <main className={`overflow-hidden flex min-h-screen w-screen justify-center items-center ${(loading) ? "bg-nothing" : "bg-off-black"}`}>
-        <motion.div 
-          className={`h-[250px] w-[250px] bg-nothing rounded-full z-50`}
+        <motion.div className="flex justify-center items-center"
           animate={{
-            scale: [100 , 0]
+            x: (playExit) ? [0, -width] : [0, 0]
           }}
           transition={{
-            duration: 0.5
+            durationL: 1,
+            ease: "easeInOut"
           }}
-        />
-        <div className={`${loading && "opacity-0"} absolute h-screen w-screen flex flex-col justify-center items-center`}>
-          <div className="flex flex-grow justify-center items-center">
-            <pre className={`${KodeMono.className} text-white text-xl md:text-6xl`}>
-              {display}{(displayCursor && display) ? "|" : " "}
-            </pre>
-          </div>
-          <motion.div
-            className="flex flex-shrink flex-col justify-center items-center"
+        >
+          <motion.div 
+            className={`h-[250px] w-[250px] bg-nothing rounded-full z-50`}
             animate={{
-              y: (textStreamFinish) ? [100, (height < width) ? 0 : -60] : [100]
-              // y: [(textStreamFinish ? 50 : 50), (textStreamFinish) ? 0 : 50]
+              scale: [100 , 0]
             }}
             transition={{
-              duration: 0.5,
-              ease: "easeInOut"
+              duration: 0.5
             }}
-          >
-              <button onClick={handleClick} className={`${KodeMono.className} bg-white text-off-black text-2xl h-[50px] w-[250px] rounded-full hover:opacity-80 active:opacity-60`}>Go to main page</button>
-              <div className="flex gap-1 mb-2">
-                <input type="checkbox" onChange={e => setSkipAnimation(e.target.checked)}/>
-                <p className={`${KodeMono.className} text-white`}>Skip animation?</p>
-              </div>
-          </motion.div>
-        </div>
+          />
+          <div className={`${loading && "opacity-0"} absolute h-screen w-screen flex flex-col justify-center items-center`}>
+            <div className="flex flex-grow justify-center items-center">
+              <pre className={`${KodeMono.className} text-white text-xl md:text-6xl`}>
+                {display}{(displayCursor && display) ? "|" : " "}
+              </pre>
+            </div>
+            <motion.div
+              className="flex flex-shrink flex-col justify-center items-center"
+              animate={{
+                y: (textStreamFinish) ? [100, (height < width) ? 0 : -60] : [100]
+                // y: [(textStreamFinish ? 50 : 50), (textStreamFinish) ? 0 : 50]
+              }}
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut"
+              }}
+            >
+                <button onClick={handleClick} className={`${KodeMono.className} bg-white text-off-black text-2xl h-[50px] w-[250px] rounded-full hover:opacity-80 active:opacity-60`}>go to main page</button>
+                <div className="flex gap-1 mb-2 mt-2">
+                  <input className="accent-white" type="checkbox" onChange={e => setSkipAnimation(e.target.checked)}/>
+                  <p className={`${KodeMono.className} text-white`}>Skip animation?</p>
+                </div>
+            </motion.div>
+          </div>
+        </motion.div>
+        
       </main>
   )
 }
