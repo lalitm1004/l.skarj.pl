@@ -16,7 +16,10 @@ export default function Nothing() {
   const [width, setWidth] = useState(0);
   const [loading, setLoading] = useState(true);
   const [everythingRoute, setEverythingRoute] = useState(false);
+  const [skipAnimation, setSkipAnimation] = useState(false);
 
+  const [textStreamFinish, setTextStreamFinish] = useState(false);
+  
   const [display, setDisplay] = useState("");
   const [displayCursor, setDisplayCursor] = useState(false);
 
@@ -60,19 +63,25 @@ export default function Nothing() {
           " clear", // Shashwat
         ]
         const textToStreamIntro = `hello, my name is lalit\nand i am`
+        const textToStreamOutro = `\n\nwelcome to the l in skarj.pl`
+
         await streamText(textToStreamIntro);
         await streamText(whatIAm[Math.floor(Math.random() * whatIAm.length)])
-        // await new Promise(r => setTimeout(r, 1000));
-        const textToStreamOutro = `\n\nwelcome to the l in skarj.pl`
         await streamText(textToStreamOutro);
         await new Promise(r => setTimeout(r, 1000));
-        router.push("/main")
+
+        setTextStreamFinish(true);
       }
       asyncMaster();
 
     }, 1000)
 
   }, [])
+
+  const handleClick = () => {
+    localStorage.setItem("everything.skipAnimation", skipAnimation)
+    router.push("/main");
+  }
 
   return (
       <main className={`overflow-hidden flex min-h-screen w-screen justify-center items-center ${(loading) ? "bg-nothing" : "bg-off-black"}`}>
@@ -91,6 +100,23 @@ export default function Nothing() {
               {display}{(displayCursor && display) ? "|" : " "}
             </pre>
           </div>
+          <motion.div
+            className="flex flex-shrink flex-col justify-center items-center"
+            animate={{
+              y: (textStreamFinish) ? [100, 0] : [100]
+              // y: [(textStreamFinish ? 50 : 50), (textStreamFinish) ? 0 : 50]
+            }}
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut"
+            }}
+          >
+              <button onClick={handleClick} className={`${KodeMono.className} bg-white text-off-black text-2xl h-[50px] w-[250px] rounded-full hover:opacity-80 active:opacity-60`}>Go to main page</button>
+              <div className="flex gap-1 mb-2">
+                <input type="checkbox" onChange={e => setSkipAnimation(e.target.checked)}/>
+                <p className={`${KodeMono.className} text-white`}>Skip animation?</p>
+              </div>
+          </motion.div>
         </div>
       </main>
   )

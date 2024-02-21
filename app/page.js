@@ -29,7 +29,12 @@ export default function Home() {
   const handleClick = async () => {
     setClicked(true);
     await new Promise(r => setTimeout(r, 1000))
-    router.push("/nothing")
+    console.log(localStorage.getItem("everything.skipAnimation"))
+    if (localStorage.getItem("everything.skipAnimation") == "true") {
+      router.push("/main");
+    } else {
+      router.push("/nothing");
+    }
   }
 
   return (
