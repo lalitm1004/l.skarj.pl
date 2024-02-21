@@ -103,7 +103,7 @@ export default function Nothing() {
           <motion.div
             className="flex flex-shrink flex-col justify-center items-center"
             animate={{
-              y: (textStreamFinish) ? [100, 0] : [100]
+              y: (textStreamFinish) ? [100, (height < width) ? 0 : -60] : [100]
               // y: [(textStreamFinish ? 50 : 50), (textStreamFinish) ? 0 : 50]
             }}
             transition={{
