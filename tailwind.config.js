@@ -17,11 +17,11 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       animation: {
-        'move-left': 'move-left 3s ease-in forwards',
-        'move-right': 'move-right 3s ease-in forwards',
+        'move-left': 'move-left 3s ease-in-out forwards',
+        'move-right': 'move-right 3s ease-in-out forwards',
         'grow-to-size': 'grow-to-size 4s ease-in-out 1',
         'grow-beyond-size': 'grow-beyond-size 4s ease-in-out 1',
-        'shrink-from-beyond': 'shrink-from-beyond 1s ease-in-out forwards'
+        'shrink-from-beyond': 'shrink-from-beyond 500ms ease-in-out 1'
       },
       keyframes: {
         'move-left': {
@@ -42,7 +42,7 @@ module.exports = {
         },
         'shrink-from-beyond': {
           '0%': {transform: 'scaleX(100) scaleY(100)'},
-          '100%': {transform: 'scaleX(0) scaleY(0)'}
+          '100%': {transform: 'scaleX(1) scaleY(1)'}
         }
       }
     },
