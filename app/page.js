@@ -6,15 +6,25 @@ import { motion } from "framer-motion";
 export default function Home() {
 
   const router = useRouter();
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(null);
+  const [height, setHeight] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [curtainsWithdrawn, setCutainsWithdrawn] = useState(false);
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    setWidth(window.innerWidth)
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight);
     setLoading(false);
   }, [])
 
+  useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setCutainsWithdrawn(true);
+      }, 4000)
+    }
+  }, [loading])
 
   const handleClick = async () => {
     setClicked(true);
@@ -23,13 +33,14 @@ export default function Home() {
   }
 
   return (
-    <main className=" bg-everything-image bg-cover bg-center flex min-h-screen flex-col justify-center items-center">
-      <div className="h-screen w-screen absolute flex justify-center items-center">
+    <main className={`${loading ? "bg-off-black" : "bg-everything-image"} bg-cover bg-center flex min-h-screen flex-col justify-center items-center`}>
+      <div className={`${(height < width) ? "flex flex-row" : "flex flex-col"} h-screen w-screen justify-center items-center`}>
         {/* Curtains */}
         <motion.div
-          className="w-1/2 h-full bg-black"
+          className={`${(height < width) ? "w-1/2 h-full" : "w-full h-1/2"} bg-off-black`}
           animate={{
-            x: [0, -width/2]
+            x: (height < width) ? [0, -width/2] : [0, 0],
+            y: (height < width) ? [0, 0] : [0, -height/2]
           }}
           transition={{
             duration: 4,
@@ -37,9 +48,10 @@ export default function Home() {
           }}
         />
         <motion.div
-          className="w-1/2 h-full bg-black"
+          className={`${(height < width) ? "w-1/2 h-full" : "w-full h-1/2"} bg-off-black`}
           animate={{
-            x:[0, width/2]
+            x: (height < width) ? [0, width/2] : [0, 0],
+            y: (height < width) ? [0, 0] : [0, +height/2]
           }}
           transition={{
             duration: 4,
@@ -58,7 +70,7 @@ export default function Home() {
             ease: "easeInOut"
           }}
         >
-          <button onClick={handleClick} className="h-full w-full rounded-full" />
+          <button onClick={handleClick} className="h-full w-full rounded-full" disabled={!curtainsWithdrawn}/>
         </motion.div>
       </div>
     </main>

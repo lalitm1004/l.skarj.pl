@@ -21,8 +21,8 @@ export default function Nothing() {
   //     router.push("/")
   // })
   return (
-      <main className={`overflow-hidden flex min-h-screen w-screen justify-center items-center ${(loading) ? "bg-nothing" : "bg-black"}`}>
-        <motion.div
+      <main className={`overflow-hidden flex min-h-screen w-screen justify-center items-center ${(loading) ? "bg-nothing" : "bg-off-black"}`}>
+        <motion.div 
           className={`h-[250px] w-[250px] bg-nothing rounded-full z-50`}
           animate={{
             scale: [100 , 0]

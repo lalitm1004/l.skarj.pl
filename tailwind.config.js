@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'nothing': '#211F20'
+        'nothing': '#211F20',
+        'off-black': '#0F0D0D'
       },
       backgroundImage: {
         "everything-image": "url('/everything.png')",
