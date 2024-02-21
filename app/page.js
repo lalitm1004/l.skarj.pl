@@ -25,6 +25,7 @@ export default function Home() {
   return (
     <main className=" bg-everything-image bg-cover bg-center flex min-h-screen flex-col justify-center items-center">
       <div className="h-screen w-screen absolute flex justify-center items-center">
+        {/* Curtains */}
         <motion.div
           className="w-1/2 h-full bg-black"
           animate={{
@@ -45,7 +46,8 @@ export default function Home() {
             ease: "easeInOut"
           }}
         />
-
+        
+        {/* Nothing */}
         <motion.div
           className={`absolute h-[250px] w-[250px] bg-nothing rounded-full ${(loading) && "opacity-0"}`}
           animate={{
