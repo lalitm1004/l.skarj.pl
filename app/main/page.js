@@ -41,7 +41,7 @@ export default function Main() {
         )}
 
         <div className={`${loading && "opacity-0"} absolute flex justify-center items-center h-screen w-screen bg-off-black`}>
-          <p className="text-white">I will make later :P</p>
+            
         </div>
       </motion.div>
     </main>
