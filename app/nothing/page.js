@@ -2,6 +2,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import localFont from "next/font/local";
+
+const KodeMono = localFont({
+  src: '../../public/fonts/KodeMono.ttf'
+})
 
 export default function Nothing() {
 
@@ -9,17 +14,40 @@ export default function Nothing() {
   const [width, setWidth] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  const [display, setDisplay] = useState("");
+  const [displayCursor, setDisplayCursor] = useState(false);
+
   useEffect(() => {
     setHeight(window.innerHeight);
     setWidth(window.innerWidth);
     setLoading(false);
   }, [])
 
-  // const router = useRouter();
-  
-  // useEffect(() => {
-  //     router.push("/")
-  // })
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setDisplayCursor((prev) => !prev);
+    }, 500)
+
+    return () => clearInterval(intervalId);
+  })
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      const streamText = async (string) => {
+        for (const letter of string) {
+          if (letter === " ") await new Promise(r => setTimeout(r, 200));
+          else await new Promise(r => setTimeout(r, 65))
+          
+          setDisplay((prevDisplay) => `${prevDisplay}${letter}`)
+        }
+      }
+      streamText("hello, i am lalit");
+
+    }, 1000)
+
+  }, [])
+
   return (
       <main className={`overflow-hidden flex min-h-screen w-screen justify-center items-center ${(loading) ? "bg-nothing" : "bg-off-black"}`}>
         <motion.div 
@@ -31,8 +59,10 @@ export default function Nothing() {
             duration: 0.5
           }}
         />
-        <div className="absolute h-screen w-screen flex justify-center items-center">
-          <p className="text-white">Hello</p>
+        <div className={`${loading && "opacity-0"} absolute h-screen w-screen flex justify-center items-center`}>
+          <pre className={`${KodeMono.className} text-white text-2xl md:text-7xl`}>
+            {display}{(displayCursor && display) ? "|" : " "}
+          </pre>
         </div>
       </main>
   )
