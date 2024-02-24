@@ -24,7 +24,7 @@ export default function Main() {
           x: (isCircleIntro ? [0, 0] : [width, 0])
         }}
         transition={{
-          duration: 1,
+          duration: 0.5,
           ease: "easeInOut"
         }}
       >
