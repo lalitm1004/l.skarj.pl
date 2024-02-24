@@ -9,7 +9,12 @@ module.exports = {
     extend: {
       colors: {
         'nothing': '#211F20',
-        'off-black': '#0F0D0D'
+        'off-black': '#0F0D0D',
+        'tvgirl-lightpink': '#E01B84',
+        'tvgirl-deeppink': '#6A053E',
+        'tvgirl-lightblue': '#1B3E96',
+        'tvgirl-deepblue': '#173359',
+        'tvgirl-black': '#080305',
       },
       backgroundImage: {
         "everything-image": "url('/everything.png')",

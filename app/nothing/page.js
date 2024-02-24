@@ -38,9 +38,7 @@ export default function Nothing() {
   })
 
   useEffect(() => {
-
     setTimeout(() => {
-
       const asyncMaster = async () => {
         
         const streamText = async (string) => {
@@ -110,7 +108,8 @@ export default function Nothing() {
           <div className={`${loading && "opacity-0"} absolute h-screen w-screen flex flex-col justify-center items-center`}>
             <div className="flex flex-grow justify-center items-center">
               <pre className={`${KodeMono.className} text-white text-xl md:text-6xl`}>
-                {display}{(displayCursor && display) ? "|" : " "}
+                {display}
+                {/* {(displayCursor && display) ? "|" : " "} */}
               </pre>
             </div>
             <motion.div
