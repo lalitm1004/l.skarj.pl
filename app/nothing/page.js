@@ -60,6 +60,7 @@ export default function Nothing() {
           "yoasobi", // Pustak
           "a crystal", // Shashwat
           "useless", // Rachit
+          "supercalifragilisticexpialidocious" // Kishika
         ]
         const textToStreamIntro = `hello, my name is lalit\nand i am `
         const textToStreamOutro = `\n\nwelcome to the l in skarj.pl`
