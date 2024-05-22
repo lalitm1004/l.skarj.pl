@@ -1,6 +1,7 @@
 <div class={`flex`}>
     {#each "lalit" as letter, index (index)}
         <img
+            width={85}
             src={`/alphabet/${letter}.svg`}
             alt={letter}
             class={`hover-animation`}

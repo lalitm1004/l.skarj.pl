@@ -13,7 +13,7 @@
         <div class="z-10 flex flex-col items-center">
             <Name />
             
-            <div class={`flex justify-around mt-10 w-[500px]`}>
+            <div class={`flex justify-around mt-10 w-[400px]`}>
                 <a href="/blog" target="_blank" class="mx-3">
                     <p class="font-terminal text-2xl">blog</p>
                 </a>
