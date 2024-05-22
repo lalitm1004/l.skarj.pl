@@ -6,8 +6,6 @@
     export let duration: Number;
     export let reverse: Boolean;
 
-    console.log(reverse)
-
     let imgElement: HTMLImageElement;
 
     onMount(() => {
@@ -16,10 +14,6 @@
             imgElement.style.top = `${depth}px`
         }
     })
-
-    const handleClick = () => {
-        alert("SEX")
-    }
 </script>
 
 <img
