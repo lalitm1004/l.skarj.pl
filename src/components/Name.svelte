@@ -1,7 +1,6 @@
 <div class={`flex`}>
     {#each "lalit" as letter, index (index)}
         <img
-            width={85}
             src={`/alphabet/${letter}.svg`}
             alt={letter}
             class={`hover-animation`}
@@ -11,6 +10,11 @@
 </div>
 
 <style>
+    img {
+        height: 85px;
+        width: 85px;
+    }
+
     @keyframes hover {
         0%, 100% {
             transform: translateY(-10px);
