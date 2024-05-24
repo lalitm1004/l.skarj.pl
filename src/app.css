@@ -2,13 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: "Inter";
+}
+
+/* Font setup */
+@font-face {
+    font-family: "Inter";
+    font-weight: 300;
+    src: url("/fonts/Inter.ttf");
+}
+
 @font-face {
     font-family: "Oswald";
     font-weight: 200;
-    src: url("/fonts/Oswald.ttf");
+    src: url("/fonts/Oswald.ttf")
 }
 
 @font-face {
     font-family: "Terminal";
     src: url("/fonts/Terminal.ttf");
 }
+/* 
+.font-inter {
+    font-family: 'Inter';
+}
+
+.font-oswald {
+    font-family: "Oswald";
+}
+
+.font-terminal {
+    font-family: "Terminal";
+}
+ */

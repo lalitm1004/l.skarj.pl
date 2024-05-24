@@ -1,16 +1,16 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
-    export let index: Number;
-    export let depth: Number;
-    export let duration: Number;
-    export let reverse: Boolean;
+    export let index: number;
+    export let duration: number;
+    export let depth: number;
+    export let reverse: boolean;
 
     let imgElement: HTMLImageElement;
 
     onMount(() => {
         if (imgElement) {
-            imgElement.style.position = 'absolute';
+            imgElement.style.position = 'absolute'
             imgElement.style.top = `${depth}px`
         }
     })
@@ -18,8 +18,8 @@
 
 <img
     bind:this={imgElement}
-    class={`absolute animate-cloud-${duration}${reverse ? "-reverse": ""} top-[${depth}px]`}
-    src={`/clouds/cloud${index}.svg`}
+    class={`animate-cloud-${duration}${reverse ? "-reverse" : ""}`}
+    src={`/assets/cloud${index}.svg`}
     alt={`Cloud Type ${index}`}
 />
 

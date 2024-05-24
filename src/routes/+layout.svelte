@@ -1,18 +1,12 @@
-<script>
+<script lang="ts">
     import "../app.css";
 </script>
 
-<svelte:head>
+<head>
     <title>lalit</title>
     <meta name="description" content="miao"/>
-</svelte:head>
+</head>
 
 <body>
     <slot />
 </body>
-
-<style>
-    body {
-        background-color: #50AAE7;
-    }
-</style>
