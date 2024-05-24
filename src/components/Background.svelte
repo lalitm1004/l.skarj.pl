@@ -27,6 +27,8 @@
             }, duration * 1000);
 
         }, 4000) // 4 seconds
+
+        return () => clearInterval(intervalId);
     })
 
 </script>

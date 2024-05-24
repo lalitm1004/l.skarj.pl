@@ -1,23 +1,23 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    
+
     let loading: boolean = true;
     let nowPlaying: boolean;
     let artistName: string;
     let songName: string;
     let imgUrl: string;
-    
+
     onMount(() => {
         const fetchTracks = async () => {
             const response = await fetch("/api/lastfm");
             const data = await response.json();
             const trackData = data["recenttracks"]["track"][0];
-    
+
             nowPlaying = trackData["@attr"]?.["nowplaying"] === "true" ?? false;
             artistName = trackData.artist["#text"];
             songName = trackData.name;
             imgUrl = trackData.image[3]["#text"];
-            
+
             if (loading) loading = false;
         }
         if (true) {
