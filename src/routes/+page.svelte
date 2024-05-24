@@ -1,11 +1,11 @@
 <script lang="ts">
-    import Hero from "../components/Hero.svelte"
-    import LastFm from "../components/LastFm.svelte";
-    import Background from "../components/Background.svelte";
+    import Hero from "$lib/components/Hero.svelte";
+    import Spotify from "$lib/components/Spotify.svelte";
+    import Background from "$lib/components/Background.svelte";
 </script>
 
 <div class={`main relative h-screen w-screen flex justify-center items-center`}>
     <Background />
-    <LastFm />
+    <Spotify />
     <Hero />
 </div>
