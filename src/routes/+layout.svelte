@@ -2,10 +2,10 @@
     import "../app.css";
 </script>
 
-<head>
-    <title>lalit</title>
+<svelte:head>
+    <title>lait</title>
     <meta name="description" content="miao"/>
-</head>
+</svelte:head>
 
 <body>
     <slot />
